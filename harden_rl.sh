@@ -20,10 +20,10 @@ chk_root() {
 
 sys_up() {
 sudo dnf update -y 
-
 }
 
 fw_cfg() {
+sudo systemctl enable firewalld
 sudo firewall-cmd --permanent --add-service=ssh # Adding port 22 as allowed on the firewall
 sudo firewall-cmd --set-default-zone=drop # Good tradecraft to drop all IB connections and allow OB connections open ports as needed  via firewalld 
 sudo firewall-cmd --reload # Reloads the service
@@ -66,6 +66,12 @@ sudo systemctl daemon-reload
 
 remove_sw() {
 sudo dnf remove rsh-server # as per RHEL STIG
+sudo dnf remove tftp-server # as per RHEL STIG
+sudo dnf remove krb5-workstation # as per RHEL STIG
+}
+
+add_sw(){
+sudo dnf install policycoreutils # as per STIG as well as in aid in SELINUX configuration
 }
 
 main() 
@@ -79,5 +85,6 @@ fw_cfg
 dis_srv
 sys_disable_ctrl
 remove_sw
+add_sw
 }
 main
