@@ -79,8 +79,8 @@ main()
 chk_root
 text "Hardening sysctl values"
 sys_ctl
-#fw_cfg
-#dis_srv
+fw_cfg
+dis_srv
 fw_cfg
 dis_srv
 sys_disable_ctrl
