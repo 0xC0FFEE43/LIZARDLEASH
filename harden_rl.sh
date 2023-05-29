@@ -64,6 +64,10 @@ sudo systemctl mask ctrl-alt-del.target
 sudo systemctl daemon-reload 
 }
 
+remove_sw() {
+sudo dnf remove rsh-server # as per RHEL STIG
+}
+
 main() 
 {
 chk_root
@@ -74,5 +78,6 @@ sys_ctl
 fw_cfg
 dis_srv
 sys_disable_ctrl
+remove_sw
 }
 main
